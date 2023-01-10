@@ -38,4 +38,12 @@ export const HomeTextLink = styled.a`
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    cursor: pointer;
+
+    background: #144359;
+  }
 `;
