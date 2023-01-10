@@ -57,7 +57,7 @@ export const BTN = styled.div`
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(90deg, #ff105f, #ffad06);
+    background: linear-gradient(90deg, #10ff48, #06f3ff);
     border-radius: 30px;
     transition: 0.5s;
   `}
@@ -115,7 +115,7 @@ export const ButtonLogin = styled.button`
   cursor: pointer;
   display: block;
   margin: auto;
-  background: linear-gradient(90deg, #ff105f, #ffad06);
+  background: linear-gradient(90deg, #10ff48, #06f3ff);
   border: 0;
   outline: none;
   border-radius: 30px;
