@@ -1,3 +1,4 @@
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import styled, { css } from 'styled-components';
 
 export const GalleryCard = styled.div`

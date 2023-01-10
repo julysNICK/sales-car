@@ -9,7 +9,6 @@ export const Home = () => {
       <Header />
       <BelowMenu />
       <SelectorBrandsCars />
-      <GalleryCards />
     </Styled.Container>
   );
 };

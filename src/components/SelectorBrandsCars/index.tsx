@@ -1,3 +1,5 @@
+import CounterPages from '../CounterPage';
+import GalleryCards from '../gallery';
 import * as Styled from './styles';
 
 export default function SelectorBrandsCars() {
@@ -23,18 +25,22 @@ export default function SelectorBrandsCars() {
     'Mitsubishi',
   ];
   return (
-    <Styled.ContainerBrands>
-      <Styled.HorinzontalScroll>
-        {/* <Styled.ButtonLeft />
+    <div>
+      <Styled.ContainerBrands>
+        <Styled.HorinzontalScroll>
+          {/* <Styled.ButtonLeft />
         <Styled.ButtonRight /> */}
-        <Styled.ContainerBrandsCars>
-          {brandsCars.map((brand) => (
-            <Styled.BrandCar key={brand}>
-              <Styled.NameBrand>{brand}</Styled.NameBrand>
-            </Styled.BrandCar>
-          ))}
-        </Styled.ContainerBrandsCars>
-      </Styled.HorinzontalScroll>
-    </Styled.ContainerBrands>
+          <Styled.ContainerBrandsCars>
+            {brandsCars.map((brand) => (
+              <Styled.BrandCar key={brand}>
+                <Styled.NameBrand>{brand}</Styled.NameBrand>
+              </Styled.BrandCar>
+            ))}
+          </Styled.ContainerBrandsCars>
+        </Styled.HorinzontalScroll>
+      </Styled.ContainerBrands>
+      <GalleryCards />
+      <CounterPages />
+    </div>
   );
 }
