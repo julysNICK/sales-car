@@ -23,6 +23,14 @@ export const FormBox = styled.div`
   margin: 6% auto;
   background: #fff;
   padding: 5px;
+  overflow: hidden;
+  #login {
+    left: 50px;
+  }
+
+  #register {
+    left: 450px;
+  }
 `;
 
 export const ButtonBox = styled.div`
@@ -42,14 +50,10 @@ export const Button = styled.button`
   position: relative;
 `;
 
-const Left0orRight0 = (screenName = 'left') => css`
-  ${screenName}: 0;
-`;
-
 export const BTN = styled.div`
   ${({ screenName }: { screenName: 'left' | 'right' }) => css`
     top: 0;
-    ${Left0orRight0(screenName)}
+    left: 0;
     position: absolute;
     width: 110px;
     height: 100%;
