@@ -9,7 +9,7 @@ import * as Styled from './styles';
 export const Header = () => {
   return (
     <Styled.Header>
-      <Styled.Logo src="public/Logosite.png" />
+      <Styled.Logo src="/Logosite.png" />
 
       <Styled.ListUnordered>
         <Styled.ListItem>
