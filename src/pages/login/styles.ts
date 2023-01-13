@@ -51,7 +51,7 @@ export const Button = styled.button`
 `;
 
 export const BTN = styled.div`
-  ${({ screenName }: { screenName: 'left' | 'right' }) => css`
+  ${({ screenName }: { screenName?: 'left' | 'right' }) => css`
     top: 0;
     left: 0;
     position: absolute;
