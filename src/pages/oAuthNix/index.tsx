@@ -1,12 +1,9 @@
-import { useRef, useState } from 'react';
-import * as styled from './styles';
 import axios from 'axios';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import OauthNix from '../oAuthNix';
-import RenderWindow from '../../components/renderWindow';
-import NewWindow from 'react-new-window';
+import * as styled from './styles';
 
-export default function LoginPage() {
+export default function OauthNix() {
   const [registerOrLogin, setRegisterOrLogin] = useState<'login' | 'register'>(
     'login',
   );
@@ -16,9 +13,17 @@ export default function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const formLoginRef = useRef<HTMLFormElement>(null);
   const formRegisterRef = useRef<HTMLFormElement>(null);
-  const [openWindow, setOpenWindow] = useState(false);
   const BtnRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+
+  const verificationEmail = (email: string) => {
+    const emailVerification = email.split('@');
+    const emailVerification2 = emailVerification[1].split('.');
+
+    if (emailVerification2[0] === 'nix' && emailVerification2[1] === 'com') {
+      return true;
+    }
+    return false;
+  };
 
   const registerFN = () => {
     console.log('registerFN');
@@ -35,10 +40,6 @@ export default function LoginPage() {
     }
 
     return;
-  };
-
-  const closeWindow = () => {
-    setOpenWindow(false);
   };
 
   const loginFN = () => {
@@ -60,61 +61,46 @@ export default function LoginPage() {
   const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('handleSubmit');
-    try {
-      const response = await axios.post('http://localhost:8080/api/v1/login', {
-        email: email,
-        password: password,
-      });
+    if (verificationEmail(email)) {
+      try {
+        const response = await axios.post('http://localhost:8080/login', {
+          email: email,
+          password: password,
+        });
 
-      navigate('/', { replace: true });
-
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        'http://localhost:8080/api/v1/register',
-        {
-          firstName: name,
-          lastName: name,
-          email: email,
+    if (verificationEmail(email)) {
+      try {
+        const response = await axios.post('http://localhost:8080/register', {
+          name: name,
+          email: `${email}`,
           password: password,
-        },
-      );
+        });
 
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
     <styled.Hero>
       <styled.FormBox>
+        <styled.TitleForm>Nix authentication</styled.TitleForm>
         <styled.ButtonBox>
           <styled.BTN ref={BtnRef}></styled.BTN>
           <styled.Button onClick={() => loginFN()}>Log in</styled.Button>
           <styled.Button onClick={() => registerFN()}>Sign up</styled.Button>
         </styled.ButtonBox>
-        <styled.SocialIcon>
-          <styled.Icon
-            src="/iconLetter.jpg"
-            onClick={() => setOpenWindow(!openWindow)}
-          />
-          <styled.Icon src="/iconLetter.jpg" />
-          <styled.Icon src="/iconLetter.jpg" />
-        </styled.SocialIcon>
-
-        {openWindow && (
-          <NewWindow>
-            <OauthNix />
-          </NewWindow>
-        )}
 
         <styled.FormLogin
           id="login"
@@ -123,7 +109,7 @@ export default function LoginPage() {
         >
           <styled.InputText
             type="text"
-            placeholder="Email..."
+            placeholder="Email: name@nix.com"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -157,7 +143,7 @@ export default function LoginPage() {
           />
           <styled.InputText
             type="text"
-            placeholder="Email..."
+            placeholder="Email: name@nix.com"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
