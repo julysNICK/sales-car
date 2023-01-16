@@ -7,7 +7,11 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import * as Styled from './styles';
 import { useNavigate } from 'react-router-dom';
 
-export const Header = () => {
+export const Header = ({
+  setShowPopup,
+}: {
+  setShowPopup?: (value: boolean) => void;
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -48,7 +52,14 @@ export const Header = () => {
           <Styled.Link href="#">Port</Styled.Link>
         </Styled.ListItem>
         <Styled.ListItem>
-          <Styled.Link href="#">Publicar venda</Styled.Link>
+          <Styled.Link
+            onClick={() => {
+              setShowPopup && setShowPopup(true);
+            }}
+            href="#"
+          >
+            Publicar venda
+          </Styled.Link>
         </Styled.ListItem>
         <Styled.ListItem>
           <Styled.Link href="#">Support</Styled.Link>
