@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CounterPages from '../CounterPage';
 import GalleryCards from '../gallery';
 import * as Styled from './styles';

@@ -5,19 +5,41 @@ import {
 } from 'react-icons/bs';
 import { AiOutlineMenu } from 'react-icons/ai';
 import * as Styled from './styles';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <Styled.Header>
-      <Styled.Logo src="/Logosite.png" />
+      <Styled.Logo
+        onClick={() => {
+          navigate('/', { replace: true });
+        }}
+        src="/Logosite.png"
+      />
 
       <Styled.ListUnordered>
         <Styled.ListItem>
-          <Styled.Link href="#">Home</Styled.Link>
+          <Styled.Link
+            onClick={() => {
+              navigate('/', { replace: true });
+            }}
+            href="#"
+          >
+            Home
+          </Styled.Link>
         </Styled.ListItem>
 
         <Styled.ListItem>
-          <Styled.Link href="#">Pages</Styled.Link>
+          <Styled.Link
+            onClick={() => {
+              navigate('/authenticator', { replace: true });
+            }}
+            href="#"
+          >
+            Login/Registrar
+          </Styled.Link>
         </Styled.ListItem>
         <Styled.ListItem>
           <Styled.Link href="#">Shop</Styled.Link>
@@ -26,7 +48,7 @@ export const Header = () => {
           <Styled.Link href="#">Port</Styled.Link>
         </Styled.ListItem>
         <Styled.ListItem>
-          <Styled.Link href="#">News</Styled.Link>
+          <Styled.Link href="#">Publicar venda</Styled.Link>
         </Styled.ListItem>
         <Styled.ListItem>
           <Styled.Link href="#">Support</Styled.Link>
