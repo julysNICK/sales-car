@@ -66,6 +66,8 @@ export default function LoginPage() {
         password: password,
       });
 
+      localStorage.setItem('token', response.data.token);
+
       navigate('/', { replace: true });
 
       console.log(response);
