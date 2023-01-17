@@ -104,7 +104,7 @@ export default function PopupSale({
             year: fields.year,
             isSold: false,
             color: 'red',
-            price: fields.price,
+            price: Number(fields.price),
             reasonToSell: 'comprar outro pls',
             image: fields.url,
           });
