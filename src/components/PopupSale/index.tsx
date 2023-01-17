@@ -1,5 +1,9 @@
+import axios from 'axios';
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import axiosBaseUrl from '../../utils/configAxios';
+import ContainerInputs from '../ContainerInputs';
+import MyInput from '../Inputs';
 import * as styled from './styles';
 
 export default function PopupSale({
@@ -13,8 +17,6 @@ export default function PopupSale({
     (state, newState) => ({ ...state, ...newState }),
 
     {
-      name: '',
-      email: '',
       phone: '',
       brand: '',
       model: '',
@@ -22,6 +24,8 @@ export default function PopupSale({
       version: '',
       km: '',
       price: '',
+      url: '',
+      description: '',
     },
 
     (initialState) => initialState,
@@ -57,6 +61,85 @@ export default function PopupSale({
   useEffect(() => {
     handleAnimation();
   }, [handleAnimation]);
+
+  const verifyFields = useCallback(() => {
+    if (
+      fields.name !== '' ||
+      fields.email !== '' ||
+      fields.phone !== '' ||
+      fields.brand !== '' ||
+      fields.model !== '' ||
+      fields.year !== '' ||
+      fields.version !== '' ||
+      fields.km !== '' ||
+      fields.price !== '' ||
+      fields.url !== '' ||
+      fields.description !== ''
+    ) {
+      return true;
+    }
+    return false;
+  }, [fields]);
+
+  const handleRefreshToken = useCallback(async () => {
+    try {
+      const response = await axiosBaseUrl.post('/refresh');
+      console.log(response);
+
+      localStorage.setItem('token', response.data.token);
+    } catch (error) {
+      console.log(error.response.status);
+    }
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      if (verifyFields()) {
+        try {
+          const response = await axiosBaseUrl.post('/car', {
+            make: fields.brand,
+            model: fields.model,
+            year: fields.year,
+            isSold: false,
+            color: 'red',
+            price: fields.price,
+            reasonToSell: 'comprar outro pls',
+            image: fields.url,
+          });
+
+          updateFields({
+            name: '',
+            email: '',
+            phone: '',
+            brand: '',
+            model: '',
+            year: '',
+            version: '',
+            km: '',
+            price: '',
+            url: '',
+            description: '',
+          });
+          alert('Cadastro realizado com sucesso!');
+          setShowPopup(false);
+        } catch (error) {
+          console.log(error);
+          if (error.response.status === 401) {
+            await handleRefreshToken();
+            await handleSubmit(e);
+          }
+        }
+        return;
+      }
+
+      alert('Preencha todos os campos!');
+      return;
+    },
+    [verifyFields, fields, setShowPopup, handleRefreshToken],
+  );
+
   return (
     <styled.Wrapper ref={refWrapper}>
       <styled.Close onClick={() => setShowPopup(false)}>
@@ -68,29 +151,8 @@ export default function PopupSale({
         </styled.Title>
 
         <styled.FormSale>
-          <styled.ContainerDoubleInputs>
-            <styled.Input
-              placeholder="Nome"
-              value={fields.name}
-              onChange={(e) =>
-                updateFields({
-                  name: e.target.value,
-                })
-              }
-            />
-
-            <styled.Input
-              placeholder="Email"
-              value={fields.email}
-              onChange={(e) =>
-                updateFields({
-                  email: e.target.value,
-                })
-              }
-            />
-          </styled.ContainerDoubleInputs>
-          <styled.ContainerDoubleInputs>
-            <styled.Input
+          <ContainerInputs>
+            <MyInput
               placeholder="Telefone"
               value={fields.phone}
               onChange={(e) =>
@@ -99,7 +161,7 @@ export default function PopupSale({
                 })
               }
             />
-            <styled.Input
+            <MyInput
               placeholder="Marca"
               value={fields.brand}
               onChange={(e) =>
@@ -109,7 +171,7 @@ export default function PopupSale({
               }
             />
 
-            <styled.Input
+            <MyInput
               placeholder="Modelo"
               value={fields.model}
               onChange={(e) =>
@@ -118,9 +180,9 @@ export default function PopupSale({
                 })
               }
             />
-          </styled.ContainerDoubleInputs>
-          <styled.ContainerDoubleInputs>
-            <styled.Input
+          </ContainerInputs>
+          <ContainerInputs>
+            <MyInput
               placeholder="Ano"
               value={fields.year}
               onChange={(e) =>
@@ -129,7 +191,7 @@ export default function PopupSale({
                 })
               }
             />
-            <styled.Input
+            <MyInput
               placeholder="Quilometragem"
               value={fields.km}
               onChange={(e) =>
@@ -138,8 +200,8 @@ export default function PopupSale({
                 })
               }
             />
-          </styled.ContainerDoubleInputs>
-          <styled.Input
+          </ContainerInputs>
+          <MyInput
             placeholder="Valor"
             value={fields.price}
             onChange={(e) =>
@@ -148,9 +210,27 @@ export default function PopupSale({
               })
             }
           />
-          <styled.Input placeholder="Descrição" />
-          <styled.Input type={'file'} placeholder="Imagem" />
-          <styled.Button type="submit">Publicar</styled.Button>
+          <MyInput
+            placeholder="Descrição"
+            value={fields.description}
+            onChange={(e) =>
+              updateFields({
+                description: e.target.value,
+              })
+            }
+          />
+          <MyInput
+            placeholder="Imagem"
+            value={fields.url}
+            onChange={(e) =>
+              updateFields({
+                url: e.target.value,
+              })
+            }
+          />
+          <styled.Button type="submit" onClick={(e) => handleSubmit(e)}>
+            Publicar
+          </styled.Button>
         </styled.FormSale>
       </styled.Content>
     </styled.Wrapper>

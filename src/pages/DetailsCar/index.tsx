@@ -5,6 +5,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 
 import axios from 'axios';
+import PopupProposal from '../../components/popupProposal';
 interface responseCar {
   id: string;
   descriptionCar: string;
@@ -20,6 +21,7 @@ interface responseCar {
 }
 
 export default function DetailsCar() {
+  const [showPopup, setShowPopup] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const { id } = useParams<{ id: string }>();
   const [car, setCar] = useState<responseCar | null>(null);
@@ -80,6 +82,7 @@ export default function DetailsCar() {
   return (
     <>
       <Header />
+
       <>
         {car !== null && (
           <>
@@ -132,15 +135,22 @@ export default function DetailsCar() {
               </styled.ContainerInfoCar>
 
               <styled.BoxButtons>
-                <styled.ButtonGetInTouch>
+                {/* <styled.ButtonGetInTouch>
                   Entrar em contato
-                </styled.ButtonGetInTouch>
-                <styled.ButtonMakeOffer>Fazer oferta</styled.ButtonMakeOffer>
+                </styled.ButtonGetInTouch> */}
+                <styled.ButtonMakeOffer
+                  onClick={() => {
+                    setShowPopup(true);
+                  }}
+                >
+                  Fazer oferta
+                </styled.ButtonMakeOffer>
               </styled.BoxButtons>
             </styled.Container>
           </>
         )}
       </>
+      <PopupProposal showPopup={showPopup} setShowPopup={setShowPopup} />
     </>
   );
 }

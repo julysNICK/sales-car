@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BelowMenu from '../../components/BelowMenu';
 import GalleryCards from '../../components/gallery';
 import { Header } from '../../components/Header';
@@ -7,6 +8,13 @@ import SelectorBrandsCars from '../../components/SelectorBrandsCars';
 import * as Styled from './styles';
 export const Home = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/authenticator', { replace: true });
+    }
+  }, [navigate]);
+
   return (
     <Styled.Container>
       <Header setShowPopup={setShowPopup} />

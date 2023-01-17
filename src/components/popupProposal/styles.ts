@@ -22,7 +22,7 @@ export const Content = styled.div`
   padding: 20px;
   border-radius: 5px;
   width: 800px;
-  height: 800px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 `;
 
 export const FormSale = styled.form`

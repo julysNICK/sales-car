@@ -111,6 +111,7 @@ export const BoxButtons = styled.div`
   left: 0;
   right: 0;
   background: #fff;
+  opacity: 0.9;
 `;
 
 export const ButtonGetInTouch = styled.button`

@@ -35,34 +35,54 @@ export const Header = ({
           </Styled.Link>
         </Styled.ListItem>
 
-        <Styled.ListItem>
-          <Styled.Link
-            onClick={() => {
-              navigate('/authenticator', { replace: true });
-            }}
-            href="#"
-          >
-            Login/Registrar
-          </Styled.Link>
-        </Styled.ListItem>
-        <Styled.ListItem>
+        {localStorage.getItem('token') ? (
+          <Styled.ListItem>
+            <Styled.Link
+              onClick={() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('firstNameUser');
+                localStorage.removeItem('lastNameUser');
+                localStorage.removeItem('emailUser');
+
+                navigate('/authenticator', { replace: true });
+              }}
+              href="#"
+            >
+              Sair
+            </Styled.Link>
+          </Styled.ListItem>
+        ) : (
+          <Styled.ListItem>
+            <Styled.Link
+              onClick={() => {
+                navigate('/authenticator', { replace: true });
+              }}
+              href="#"
+            >
+              Login/Registrar
+            </Styled.Link>
+          </Styled.ListItem>
+        )}
+        {/* <Styled.ListItem>
           <Styled.Link href="#">Shop</Styled.Link>
-        </Styled.ListItem>
+        </Styled.ListItem> */}
         <Styled.ListItem>
-          <Styled.Link href="#">Port</Styled.Link>
+          <Styled.Link href="#">Sobre</Styled.Link>
         </Styled.ListItem>
+        {localStorage.getItem('token') ? (
+          <Styled.ListItem>
+            <Styled.Link
+              onClick={() => {
+                setShowPopup && setShowPopup(true);
+              }}
+              href="#"
+            >
+              Publicar venda
+            </Styled.Link>
+          </Styled.ListItem>
+        ) : null}
         <Styled.ListItem>
-          <Styled.Link
-            onClick={() => {
-              setShowPopup && setShowPopup(true);
-            }}
-            href="#"
-          >
-            Publicar venda
-          </Styled.Link>
-        </Styled.ListItem>
-        <Styled.ListItem>
-          <Styled.Link href="#">Support</Styled.Link>
+          <Styled.Link href="#">Suporte</Styled.Link>
         </Styled.ListItem>
       </Styled.ListUnordered>
 

@@ -67,6 +67,9 @@ export default function LoginPage() {
       });
 
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('firstNameUser', response.data.user.firstName);
+      localStorage.setItem('lastNameUser', response.data.user.lastName);
+      localStorage.setItem('emailUser', response.data.user.email);
 
       navigate('/', { replace: true });
 

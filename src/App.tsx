@@ -8,7 +8,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomeScreen />} />
+
       <Route path="/authenticator" element={<LoginPage />} />
+
       <Route path="/detailsCar/:id" element={<DetailsCar />} />
       <Route path="/oauthNix" element={<OauthNix />} />
       <Route path="*" element={<h1>404 - Not Found!</h1>} />
