@@ -29,16 +29,16 @@ export const ButtonRight = styled.button``;
 export const ButtonLeft = styled.button``;
 
 export const ContainerBrandsCars = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 `;
 
 export const BrandCar = styled.div`
-  margin: 15px 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   background-color: #fff;

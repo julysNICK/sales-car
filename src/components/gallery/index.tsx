@@ -49,19 +49,17 @@ export default function GalleryCards() {
     };
   }, []);
   return (
-    <>
-      <styled.GalleryCard>
-        {cars.map((car) => (
-          <Card
-            key={car?.CarsInfo?.Car.id}
-            model={car?.CarsInfo?.Car.model}
-            id={car?.CarsInfo?.Car.id}
-            image={car?.CarsInfo?.Car.image}
-            description={car?.CarsInfo?.Car.descriptionCar}
-            price={car?.CarsInfo?.Car.price}
-          />
-        ))}
-      </styled.GalleryCard>
-    </>
+    <styled.GalleryCard>
+      {cars.map((car) => (
+        <Card
+          key={car?.CarsInfo?.Car.id}
+          model={car?.CarsInfo?.Car.model}
+          id={car?.CarsInfo?.Car.id}
+          image={car?.CarsInfo?.Car.image}
+          description={car?.CarsInfo?.Car.descriptionCar}
+          price={car?.CarsInfo?.Car.price}
+        />
+      ))}
+    </styled.GalleryCard>
   );
 }

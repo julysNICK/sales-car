@@ -20,7 +20,6 @@ export const Home = () => {
       <Header setShowPopup={setShowPopup} />
       <BelowMenu />
       <SelectorBrandsCars />
-
       <PopupSale showPopup={showPopup} setShowPopup={setShowPopup} />
     </Styled.Container>
   );

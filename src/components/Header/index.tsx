@@ -35,6 +35,27 @@ export const Header = ({
           </Styled.Link>
         </Styled.ListItem>
 
+        {/* <Styled.ListItem>
+          <Styled.Link href="#">Shop</Styled.Link>
+        </Styled.ListItem> */}
+        <Styled.ListItem>
+          <Styled.Link href="#">Minhas vendas</Styled.Link>
+        </Styled.ListItem>
+        {localStorage.getItem('token') ? (
+          <Styled.ListItem>
+            <Styled.Link
+              onClick={() => {
+                setShowPopup && setShowPopup(true);
+              }}
+              href="#"
+            >
+              Publicar venda
+            </Styled.Link>
+          </Styled.ListItem>
+        ) : null}
+        <Styled.ListItem>
+          <Styled.Link href="#">Suporte</Styled.Link>
+        </Styled.ListItem>
         {localStorage.getItem('token') ? (
           <Styled.ListItem>
             <Styled.Link
@@ -63,27 +84,6 @@ export const Header = ({
             </Styled.Link>
           </Styled.ListItem>
         )}
-        {/* <Styled.ListItem>
-          <Styled.Link href="#">Shop</Styled.Link>
-        </Styled.ListItem> */}
-        <Styled.ListItem>
-          <Styled.Link href="#">Sobre</Styled.Link>
-        </Styled.ListItem>
-        {localStorage.getItem('token') ? (
-          <Styled.ListItem>
-            <Styled.Link
-              onClick={() => {
-                setShowPopup && setShowPopup(true);
-              }}
-              href="#"
-            >
-              Publicar venda
-            </Styled.Link>
-          </Styled.ListItem>
-        ) : null}
-        <Styled.ListItem>
-          <Styled.Link href="#">Suporte</Styled.Link>
-        </Styled.ListItem>
       </Styled.ListUnordered>
 
       <Styled.DivIcons>
