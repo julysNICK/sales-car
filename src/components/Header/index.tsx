@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 
 export const Header = ({
   setShowPopup,
+  setShowPopupMySales,
 }: {
   setShowPopup?: (value: boolean) => void;
+  setShowPopupMySales?: (value: boolean) => void;
 }) => {
   const navigate = useNavigate();
 
@@ -39,7 +41,14 @@ export const Header = ({
           <Styled.Link href="#">Shop</Styled.Link>
         </Styled.ListItem> */}
         <Styled.ListItem>
-          <Styled.Link href="#">Minhas vendas</Styled.Link>
+          <Styled.Link
+            onClick={() => {
+              setShowPopupMySales && setShowPopupMySales(true);
+            }}
+            href="#"
+          >
+            Minhas vendas
+          </Styled.Link>
         </Styled.ListItem>
         {localStorage.getItem('token') ? (
           <Styled.ListItem>

@@ -7,17 +7,26 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import PopupProposal from '../../components/popupProposal';
 interface responseCar {
-  id: string;
-  descriptionCar: string;
-  color: string;
-  image: string;
-  isSold: boolean;
-  make: string;
-  model: string;
-  price: number;
-  reasonToSell: string;
-  user_id: string;
-  year: string;
+  Car: {
+    id: string;
+    descriptionCar: string;
+    color: string;
+    image: string;
+    isSold: boolean;
+    make: string;
+    model: string;
+    price: number;
+    reasonToSell: string;
+    user_id: string;
+    year: string;
+  };
+
+  User: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
 }
 
 export default function DetailsCar() {
@@ -32,7 +41,7 @@ export default function DetailsCar() {
         `http://localhost:8080/api/v1/car/${id}`,
       );
 
-      setCar(response.data);
+      setCar(response.data.CarsInfo);
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +97,7 @@ export default function DetailsCar() {
           <>
             <styled.Container>
               <styled.ContainerSlider>
-                <styled.ImageSlider src={car?.image} />
+                <styled.ImageSlider src={car?.Car.image} />
 
                 <styled.AmountOfImages>
                   {currentImage + 1} / {images.length}
@@ -105,31 +114,31 @@ export default function DetailsCar() {
                 <styled.TitleCar>Ficha técnica</styled.TitleCar>
                 <styled.BoxInfo>
                   <styled.InfoTech>Marca:</styled.InfoTech>
-                  <styled.InfoCar>{car?.make}</styled.InfoCar>
+                  <styled.InfoCar>{car?.Car.make}</styled.InfoCar>
                 </styled.BoxInfo>
                 <styled.BoxInfo>
                   <styled.InfoTech>Modelo:</styled.InfoTech>
-                  <styled.InfoCar>{car?.model}</styled.InfoCar>
+                  <styled.InfoCar>{car?.Car.model}</styled.InfoCar>
                 </styled.BoxInfo>
                 <styled.BoxInfo>
                   <styled.InfoTech>Ano de compra:</styled.InfoTech>
-                  <styled.InfoCar>{car?.year}</styled.InfoCar>
+                  <styled.InfoCar>{car?.Car.year}</styled.InfoCar>
                 </styled.BoxInfo>
 
                 <styled.BoxInfo>
                   <styled.InfoTech>Motivo da venda:</styled.InfoTech>
-                  <styled.InfoCar>{car?.reasonToSell}</styled.InfoCar>
+                  <styled.InfoCar>{car?.Car.reasonToSell}</styled.InfoCar>
                 </styled.BoxInfo>
 
                 <styled.BoxInfo>
                   <styled.InfoTech>Proprietario:</styled.InfoTech>
-                  <styled.InfoCar>João da Silva</styled.InfoCar>
+                  <styled.InfoCar>{`${car?.User.firstName} ${car?.User.lastName}`}</styled.InfoCar>
                 </styled.BoxInfo>
 
                 <styled.BoxInfo>
                   <styled.InfoTech>Valor:</styled.InfoTech>
                   <styled.InfoCar>
-                    <strong>{`R$ ${car?.price} à vista`}</strong>
+                    <strong>{`R$ ${car?.Car.price} à vista`}</strong>
                   </styled.InfoCar>
                 </styled.BoxInfo>
               </styled.ContainerInfoCar>

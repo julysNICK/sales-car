@@ -3,7 +3,17 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as styled from './styles';
 
-export default function OauthNix() {
+export default function OauthNix({
+  setNameNix,
+  setEmailNix,
+  handleSubmitRegisterNix,
+  handleSubmitLoginByNix,
+}: {
+  setNameNix: (name: string) => void;
+  setEmailNix: (email: string) => void;
+  handleSubmitRegisterNix: () => void;
+  handleSubmitLoginByNix: () => void;
+}) {
   const [registerOrLogin, setRegisterOrLogin] = useState<'login' | 'register'>(
     'login',
   );
@@ -60,15 +70,20 @@ export default function OauthNix() {
 
   const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('handleSubmit');
     if (verificationEmail(email)) {
+      console.log('handleSubmitLogin');
       try {
-        const response = await axios.post('http://localhost:8080/login', {
+        const response = await axios.post('http://localhost:9090/login', {
           email: email,
           password: password,
         });
 
         console.log(response);
+
+        setNameNix(response.data.name);
+        setEmailNix(response.data.email);
+
+        await handleSubmitLoginByNix();
       } catch (error) {
         console.log(error);
       }
@@ -76,10 +91,13 @@ export default function OauthNix() {
   };
 
   const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    const formRegister = formRegisterRef.current;
+    const formLogin = formLoginRef.current;
+    const Btn = BtnRef.current;
     e.preventDefault();
     if (verificationEmail(email)) {
       try {
-        const response = await axios.post('http://localhost:8080/register', {
+        const response = await axios.post('http://localhost:9090/register', {
           name: name,
           email: `${email}`,
           password: password,
@@ -87,7 +105,19 @@ export default function OauthNix() {
 
         console.log(response);
 
+        setNameNix(name);
+        setEmailNix(email);
+
+        await handleSubmitRegisterNix();
+
         localStorage.setItem('token', response.data.token);
+        if (registerOrLogin !== 'login' && formRegister && formLogin && Btn) {
+          formRegister.style.left = '-450px';
+          formLogin.style.left = '50px';
+          Btn.style.left = '0px';
+          setRegisterOrLogin('login');
+          return;
+        }
       } catch (error) {
         console.log(error);
       }

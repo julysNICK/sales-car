@@ -11,6 +11,8 @@ export default function LoginPage() {
     'login',
   );
   const [name, setName] = useState('');
+  const [nameNix, setNameNix] = useState('');
+  const [emailNix, setEmailNix] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -97,6 +99,45 @@ export default function LoginPage() {
       console.log(error);
     }
   };
+  const handleSubmitLoginByNix = async () => {
+    console.log('handleSubmitNIx1111111111111111111111111');
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/login', {
+        email: emailNix,
+        password: emailNix,
+      });
+
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('firstNameUser', response.data.user.firstName);
+      localStorage.setItem('lastNameUser', response.data.user.lastName);
+      localStorage.setItem('emailUser', response.data.user.email);
+
+      navigate('/', { replace: true });
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmitRegisterNix = async () => {
+    console.log('handleSubmitNIxRegister1111111111111111111111111');
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/api/v1/register',
+        {
+          firstName: nameNix,
+          lastName: nameNix,
+          email: emailNix,
+          password: emailNix,
+        },
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <styled.Hero>
@@ -117,7 +158,12 @@ export default function LoginPage() {
 
         {openWindow && (
           <NewWindow>
-            <OauthNix />
+            <OauthNix
+              setNameNix={setNameNix}
+              setEmailNix={setEmail}
+              handleSubmitRegisterNix={handleSubmitRegisterNix}
+              handleSubmitLoginByNix={handleSubmitLoginByNix}
+            />
           </NewWindow>
         )}
 

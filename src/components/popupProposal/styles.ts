@@ -18,7 +18,7 @@ export const Content = styled.div`
   top: -50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: red;
+  background: #4d5061;
   padding: 20px;
   border-radius: 5px;
   width: 800px;
@@ -36,6 +36,7 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 50px;
+  color: #e8efff;
 `;
 
 export const FormSale = styled.form`
@@ -50,11 +51,11 @@ export const FormSale = styled.form`
 export const Button = styled.button`
   width: 100%;
   height: 40px;
-  border: 1px solid #ccc;
+  border: 1px solid #c4c6d4;
   border-radius: 5px;
   padding: 0 10px;
   margin-bottom: 10px;
-  background: #ccc;
+  background: #c4c6d4;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
