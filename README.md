@@ -68,7 +68,7 @@ Golang
 
 ### Pré-requisito
 
-Para configurar o projeto o pré-requisito é possuir instalado o node js e react js depois rode o comando oabaixo
+Para configurar o projeto o pré-requisito é possuir instalado react js depois rode o comando oabaixo
 * npm
   ```sh
   npm install npm@latest -g
