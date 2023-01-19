@@ -1,7 +1,7 @@
 # Car-Sales-Web
 ## Descrição do Projeto
 
-<p align="center">O projeto do car sales foi feito com intuito de rever conceitos e aprender novos colocando eles em pratica nas tecnologias golang no back e react js na sua nova vesão</p
+<p align="center">O projeto do car sales foi feito com intuito de rever conceitos e aprender novos e colocar eles em pratica nas tecnologias golang no back e react js na sua nova vesão</p
  <h4 align="center">
 	✅  Car-Sales-Web 🚀 Concluido...  ✅
  </h4>
