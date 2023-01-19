@@ -78,7 +78,7 @@ Para configurar o projeto o pré-requisito é possuir instalado react js depois 
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/julysNICK/Amazon-Clone.git
+   git clone https://github.com/julysNICK/sales-car
    ```
 2. Install NPM packages
    ```sh
