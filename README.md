@@ -3,7 +3,7 @@
 
 <p align="center">O projeto do car sales foi feito com intuito de rever conceitos e aprender novos colocando eles em pratica nas tecnologias golang no back e react js na sua nova vesão</p
  <h4 align="center">
-	✅  Amazon-Clone 🚀 Concluido...  ✅
+	✅  Car-Sales-Web 🚀 Concluido...  ✅
  </h4>
 
  <!-- TABLE OF CONTENTS -->
