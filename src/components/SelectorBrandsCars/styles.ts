@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const ContainerBrands = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #f5f5f5;
   width: 100%;
@@ -17,7 +17,7 @@ export const HorinzontalScroll = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 
   align-items: center;
   position: relative;
@@ -32,7 +32,7 @@ export const ContainerBrandsCars = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -44,6 +44,7 @@ export const BrandCar = styled.div`
   background-color: #fff;
   border: 1px solid #000;
   padding: 15px;
+  cursor: pointer;
 `;
 
 export const NameBrand = styled.p`

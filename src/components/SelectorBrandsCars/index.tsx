@@ -5,6 +5,7 @@ import GalleryCards from '../gallery';
 import * as Styled from './styles';
 
 export default function SelectorBrandsCars() {
+  const [selectedBrand, setSelectedBrand] = useState('Todos');
   const brandsCars = [
     'Todos',
     'Mercedes',
@@ -26,23 +27,25 @@ export default function SelectorBrandsCars() {
     'Volvo',
     'Mitsubishi',
   ];
+
   return (
-    <div>
+    <>
       <Styled.ContainerBrands>
         <Styled.HorinzontalScroll>
-          {/* <Styled.ButtonLeft />
-        <Styled.ButtonRight /> */}
           <Styled.ContainerBrandsCars>
             {brandsCars.map((brand) => (
-              <Styled.BrandCar key={brand}>
+              <Styled.BrandCar
+                key={brand}
+                onClick={() => setSelectedBrand(brand)}
+              >
                 <Styled.NameBrand>{brand}</Styled.NameBrand>
               </Styled.BrandCar>
             ))}
           </Styled.ContainerBrandsCars>
         </Styled.HorinzontalScroll>
       </Styled.ContainerBrands>
-      <GalleryCards />
+      <GalleryCards selectedBrand={selectedBrand} />
       <CounterPages />
-    </div>
+    </>
   );
 }

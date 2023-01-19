@@ -99,7 +99,7 @@ export default function PopupSale({
       if (verifyFields()) {
         try {
           const response = await axiosBaseUrl.post('/car', {
-            make: fields.brand,
+            make: fields?.brand?.toLowerCase(),
             model: fields.model,
             year: fields.year,
             isSold: false,
