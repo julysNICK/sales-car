@@ -138,4 +138,4 @@ Email: julysmartins54@gmail.com
 
 linkedin:www.linkedin.com/in/julys-martins-2558651a3
 
-Project Link: [https://github.com/julysNICK/Amazon_Clone.git](https://github.com/julysNICK/Amazon_Clone.git)
+Project Link: [https://github.com/julysNICK/sales-car](https://github.com/julysNICK/sales-car)
